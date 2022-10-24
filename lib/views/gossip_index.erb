@@ -1,0 +1,33 @@
+<html>
+
+  <head>
+    <title>The Gossip Project</title>
+  </head>
+
+  <body>
+      
+  <% id = params['id'].to_i %>
+
+    <h1>PAGE POTIN</h1>
+    <h2>Voici la page du potin n°<%= id %> </h2>
+    <p> Son auteur : <%= gossips[id].author %> </p>
+    <p> Son auteur : <%= gossips[id].content %> </p>
+    <a href="/">Lien pour revenir à la page des potins</a>
+
+    <p>Balance ton com via le formulaire ci-dessous</p>
+
+    <form action='/gossips/<%= id %>/' method='POST'>
+      Saisi ici ton nom :  <input type='text' name='com_author'/><br/>
+      Balance ton com : <input type='text' name='com_content'/><br/>
+      <input type='submit'/>
+    </form>
+
+    <% comment.each do |comment| %>
+
+      <% if comment.edit_nb.to_i == id.to_i %>
+        <p> Author :  <%= comment.author %><br/>
+        <p> Comment :  <%= comment.content %><br/>
+      <% end %>
+    <% end %>
+
+</html>
